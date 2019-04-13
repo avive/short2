@@ -1,13 +1,10 @@
 # Shirley Shor Art Token Project
 
-This box is our most bare official implementation with Webpack.
-
 Includes contracts, migrations, tests, user interface, and webpack build pipeline.
 
 ## Installation
 
 First ensure you are in a new and empty directory.
-
 
 1. Install Truffle globally
     ```javascript

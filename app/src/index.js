@@ -1,10 +1,10 @@
 import Web3 from "web3";
-import metaCoinArtifact from "../../build/contracts/ShirleyShorToken.json";
+import shortArtifact from "../../build/contracts/ShirleyShorToken.json";
 
 const App = {
   web3: null,
   account: null,
-  meta: null,
+  shorToken: null,
 
   start: async function() {
     const { web3 } = this;
@@ -12,15 +12,21 @@ const App = {
     try {
       // get contract instance
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = metaCoinArtifact.networks[networkId];
-      this.meta = new web3.eth.Contract(
-        metaCoinArtifact.abi,
+      const deployedNetwork = shortArtifact.networks[networkId];
+      this.shorToken = new web3.eth.Contract(
+        shortArtifact.abi,
         deployedNetwork.address,
       );
 
       // get accounts
       const accounts = await web3.eth.getAccounts();
       this.account = accounts[0];
+
+      const userAddressElement = document.getElementById("userAddress");
+      userAddressElement.innerHTML = "Your account address: " + this.account;
+
+      const contractAddressElement = document.getElementById("contractAddress");
+      contractAddressElement.innerHTML = "Token address: " + deployedNetwork.address;
 
       this.refreshBalance();
     } catch (error) {
@@ -29,23 +35,34 @@ const App = {
   },
 
   refreshBalance: async function() {
-    const { getBalance } = this.meta.methods;
-    const balance = await getBalance(this.account).call();
+    const { balanceOf, tokenPrice } = this.shorToken.methods;
 
-    const balanceElement = document.getElementsByClassName("balance")[0];
-    balanceElement.innerHTML = balance;
+    const balance = await balanceOf(this.account).call();
+    const price = await tokenPrice().call();
+    console.log("price: (wei) " + price);
+    const priceEth = price / 3000000000000000000;
+
+    const balanceElement = document.getElementById("balance");
+    balanceElement.innerHTML = "Your token balance: " + balance;
+
+    const priceElement = document.getElementById("price");
+    priceElement.innerHTML = "Token price is " + priceEth + " ether";
   },
 
   sendCoin: async function() {
     const amount = parseInt(document.getElementById("amount").value);
-    const receiver = document.getElementById("receiver").value;
 
-    this.setStatus("Initiating transaction... (please wait)");
+    this.setStatus("Purchasing...");
 
-    const { sendCoin } = this.meta.methods;
-    await sendCoin(receiver, amount).send({ from: this.account });
+    const { tokenPrice, purchase } = this.shorToken.methods;
 
-    this.setStatus("Transaction complete!");
+    const price = await tokenPrice.call();
+    console.log("1 token price price: " + price);
+    const payment = price * amount;
+
+    await purchase(amount).send({ from: this.account, value: payment });
+
+    this.setStatus("Transaction complete. Thank you and welcome to tema human");
     this.refreshBalance();
   },
 
@@ -56,9 +73,9 @@ const App = {
 };
 
 window.App = App;
-
 window.addEventListener("load", function() {
   if (window.ethereum) {
+     console.log("Using metamask...");
     // use MetaMask's provider
     App.web3 = new Web3(window.ethereum);
     window.ethereum.enable(); // get permission to access accounts
@@ -68,7 +85,7 @@ window.addEventListener("load", function() {
     );
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
     App.web3 = new Web3(
-      new Web3.providers.HttpProvider("http://127.0.0.1:9545"),
+      new Web3.providers.HttpProvider("http://127.0.0.1:7545"),
     );
   }
 

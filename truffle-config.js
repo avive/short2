@@ -45,7 +45,8 @@ module.exports = {
      development: {
       host: "127.0.0.1",
       port: 7545,
-      network_id: "*",
+      network_id: "10",
+      defaultEtherBalance: 100,
      },
 
     // Another network with more advanced options...
