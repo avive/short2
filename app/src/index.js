@@ -13,28 +13,28 @@ const App = {
       // get contract instance
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = shortArtifact.networks[networkId];
-      this.shorToken = new web3.eth.Contract(
-        shortArtifact.abi,
-        deployedNetwork.address,
-      );
-
-      // get accounts
-      const accounts = await web3.eth.getAccounts();
-      this.account = accounts[0];
-
-      const userAddressElement = document.getElementById("userAddress");
-      userAddressElement.innerHTML = "Your account address: " + this.account;
+      this.shorToken = new web3.eth.Contract(shortArtifact.abi, deployedNetwork.address);
 
       const contractAddressElement = document.getElementById("contractAddress");
-      contractAddressElement.innerHTML = "Token address: " + deployedNetwork.address;
+      contractAddressElement.innerHTML = "Token smart contract address: " + deployedNetwork.address;
 
       this.refreshBalance();
+
     } catch (error) {
       console.error("Could not connect to contract or chain.");
     }
   },
 
   refreshBalance: async function() {
+
+    const { web3 } = this;
+
+    const accounts = await web3.eth.getAccounts();
+    this.account = accounts[0];
+
+    const userAddressElement = document.getElementById("userAddress");
+     userAddressElement.innerHTML = "Your eth account address is " + this.account;
+
     const { balanceOf, tokenPrice } = this.shorToken.methods;
 
     const balance = await balanceOf(this.account).call();
@@ -43,10 +43,10 @@ const App = {
     const priceEth = price / 3000000000000000000;
 
     const balanceElement = document.getElementById("balance");
-    balanceElement.innerHTML = "Your token balance: " + balance;
+    balanceElement.innerHTML = "Your token balance is " + balance;
 
     const priceElement = document.getElementById("price");
-    priceElement.innerHTML = "Token price is " + priceEth + " ether";
+    priceElement.innerHTML = "Token price is " + priceEth + " ether.";
   },
 
   sendCoin: async function() {
@@ -59,11 +59,14 @@ const App = {
     const price = await tokenPrice.call();
     console.log("1 token price price: " + price);
     const payment = price * amount;
-
-    await purchase(amount).send({ from: this.account, value: payment });
-
-    this.setStatus("Transaction complete. Thank you and welcome to tema human");
-    this.refreshBalance();
+    try {
+        await purchase(amount).send({ from: this.account, value: payment });
+        this.setStatus("Welcome to team human :-)");
+        this.refreshBalance();
+    } catch (err) {
+      console.error("Error: " + err);
+      this.setStatus("Please try again...");
+    }
   },
 
   setStatus: function(message) {
