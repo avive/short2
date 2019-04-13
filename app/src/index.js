@@ -47,7 +47,7 @@ const App = {
     balanceElement.innerHTML = "Your token balance is " + balance;
 
     const priceElement = document.getElementById("price");
-    priceElement.innerHTML = "Token price is " + priceEth + " ether.";
+    priceElement.innerHTML = "One token cost is " + priceEth + " ether.";
   },
 
   sendCoin: async function() {
