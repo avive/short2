@@ -21,7 +21,7 @@ const App = {
       this.refreshBalance();
 
     } catch (error) {
-      console.error("Could not connect to contract or chain.");
+      console.error("Could not connect to contract on chain :-(");
     }
   },
 
@@ -39,8 +39,9 @@ const App = {
 
     const balance = await balanceOf(this.account).call();
     const price = await tokenPrice().call();
-    console.log("price: (wei) " + price);
-    const priceEth = price / 3000000000000000000;
+    console.log("price: (wei) " + price.toString());
+
+    const priceEth = web3.utils.fromWei(price.toString(), 'ether');
 
     const balanceElement = document.getElementById("balance");
     balanceElement.innerHTML = "Your token balance is " + balance;
