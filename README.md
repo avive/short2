@@ -1,4 +1,4 @@
-# Webpack Truffle Box
+# Shirley Shor Art Token Project
 
 This box is our most bare official implementation with Webpack.
 
