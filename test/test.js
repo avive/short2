@@ -1,7 +1,16 @@
-const BigNumber = web3.BigNumber;
+/*
+  ____  _     _      _              ____  _                _____     _
+ / ___|| |__ (_)_ __| | ___ _   _  / ___|| |__   ___  _ __|_   _|__ | | _____ _ __
+ \___ \| '_ \| | '__| |/ _ \ | | | \___ \| '_ \ / _ \| '__| | |/ _ \| |/ / _ \ '_ \
+  ___) | | | | | |  | |  __/ |_| |  ___) | | | | (_) | |    | | (_) |   <  __/ || |
+ |____/|_| |_|_|_|  |_|\___|\__, | |____/|_| |_|\___/|_|    |_|\___/|_|\_\___|_||_|
+                            |___/
+  Shirley Shor * Art Token * Smart Contact * Team Human
+*/
+
+const Token = artifacts.require("ShirleyShorToken");
 const log = console.log;
 const tokenSupply = 1000;
-const Token = artifacts.require("ShirleyShorToken");
 
 contract("ShirleyShorToken", async accounts => {
   it("Anyone should be able to purchase tokens", async () => {
@@ -36,7 +45,7 @@ contract("ShirleyShorToken", async accounts => {
 
   });
 
-  it("Token holder should be able to transfer his tokens to any another account", async () => {
+  it("Token holder should be able to transfer tokens to any another account", async () => {
       const instance = await Token.new();
       const buyer = accounts[1];
       const tokenPrice = await instance.tokenPrice();
@@ -56,7 +65,7 @@ contract("ShirleyShorToken", async accounts => {
 
   });
 
-  it("Owner should have all tokens after deployment", async () => {
+  it("Artist should have all tokens after the initial deployment", async () => {
     const instance = await Token.new();
     const balance = await instance.balanceOf(accounts[0]);
     assert.equal(balance.toNumber(), tokenSupply);
@@ -65,11 +74,11 @@ contract("ShirleyShorToken", async accounts => {
 
   });
 
-  it("Owner should be able to transfer eth balance out of contract", async () => {
+  it("Artist should be able to transfer eth balance out of contract", async () => {
 
   });
 
-  it("Owner should be able to update token price", async () => {
+  it("Artist should be able to only raise the token price", async () => {
 
   });
 });
