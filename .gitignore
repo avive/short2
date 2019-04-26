@@ -6,6 +6,7 @@ build
 .firebaserc
 .firebase
 /app/dist
-eth-avive-acc-priv.txt
-eth-avive-acc-priv-p.txt
+eth*.txt
+eth*.txt
 firebase-debug.log
+config.md
