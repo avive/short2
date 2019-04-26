@@ -7,6 +7,5 @@ build
 .firebase
 /app/dist
 eth*.txt
-eth*.txt
 firebase-debug.log
 config.md

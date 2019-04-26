@@ -1,11 +1,16 @@
 /*
-  ____  _     _      _              ____  _                _____     _
- / ___|| |__ (_)_ __| | ___ _   _  / ___|| |__   ___  _ __|_   _|__ | | _____ _ __
- \___ \| '_ \| | '__| |/ _ \ | | | \___ \| '_ \ / _ \| '__| | |/ _ \| |/ / _ \ '_ \
-  ___) | | | | | |  | |  __/ |_| |  ___) | | | | (_) | |    | | (_) |   <  __/ || |
- |____/|_| |_|_|_|  |_|\___|\__, | |____/|_| |_|\___/|_|    |_|\___/|_|\_\___|_||_|
-                            |___/
-  Shirley Shor * Art Token * Smart Contact * Team Human
+  _________.__    .__       .__                   _________.__
+ /   _____/|  |__ |__|______|  |   ____ ___.__.  /   _____/|  |__   ___________
+ \_____  \ |  |  \|  \_  __ \  | _/ __ <   |  |  \_____  \ |  |  \ /  _ \_  __ \
+ /        \|   Y  \  ||  | \/  |_\  ___/\___  |  /        \|   Y  (  <_> )  | \/
+/_______  /|___|  /__||__|  |____/\___  > ____| /_______  /|___|  /\____/|__|
+        \/      \/                    \/\/              \/      \/
+   _____          __    __________              .__          __
+  /  _  \________/  |_  \______   \ ____   ____ |__| _______/  |________ ___.__.
+ /  /_\  \_  __ \   __\  |       _// __ \ / ___\|  |/  ___/\   __\_  __ <   |  |
+/    |    \  | \/|  |    |    |   \  ___// /_/  >  |\___ \  |  |  |  | \/\___  |
+\____|__  /__|   |__|    |____|_  /\___  >___  /|__/____  > |__|  |__|   / ____|
+        \/                      \/     \/_____/         \/               \/
 */
 
 const Registry = artifacts.require("ShirleyShorArtRegistry");
@@ -22,7 +27,8 @@ contract("ShirleyShorArtRegistry", async accounts => {
         const project = "Team Human";
         const totalEditions = 2;
 
-        await instance.registerArtPiece(pieceName, project, totalEditions, {from: accounts[0]});
+        await instance.registerArtPiece(pieceName, project, totalEditions,
+            {from: accounts[0]});
 
         const c1 = await instance.artPieceIds();
         assert.equal(c1, 1);
@@ -79,7 +85,5 @@ contract("ShirleyShorArtRegistry", async accounts => {
             res = true;
         }
         assert.equal(res, true);
-
     });
-
 });
