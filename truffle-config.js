@@ -18,12 +18,6 @@
  *
  */
 
-const HDWallet = require('truffle-hdwallet-provider');
-const fs = require('fs');
-const infuraKey = fs.readFileSync(".infura-key").toString().trim();
-//
-const mnemonic = fs.readFileSync(".secret").toString().trim();
-
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -49,10 +43,10 @@ module.exports = {
       defaultEtherBalance: 100,
      },
 
-     "live": {
+     live: {
          network_id: 1,
          host: "127.0.0.1",
-         port: 8546,   // local geth port
+         port: 8092,   // local custom geth port
          from: "0x2ccf2e37b2a2a3f42e647adc16d37e8534b75d30", // deploy account
          gasPrice: 3000000000, // 3 gwei
      },

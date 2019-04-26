@@ -1,10 +1,11 @@
 node_modules
 build
 .DS_Store
-//.infura-key
-//.secret
+.infura-key
+.secret
 .firebaserc
 .firebase
 /app/dist
 eth-avive-acc-priv.txt
 eth-avive-acc-priv-p.txt
+firebase-debug.log
