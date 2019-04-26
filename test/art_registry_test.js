@@ -71,12 +71,15 @@ contract("ShirleyShorArtRegistry", async accounts => {
         assert.equal(artPiece.editionsSold, 2);
 
         // attempting to sell 3rd edition should fail
+        let res = false;
         try {
-            const res = await instance.registerEdition(0, accounts[3], price1,
+            res = await instance.registerEdition(0, accounts[3], price1,
                 {from: accounts[0]});
-            assert(false);
         } catch (err) {
+            res = true;
         }
+        assert.equal(res, true);
+
     });
 
 });
