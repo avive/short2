@@ -82,7 +82,7 @@ const App = {
 };
 
 window.App = App;
-window.addEventListener("load", function() {
+window.addEventListener("load", async function() {
   if (window.ethereum) {
     if (!ethereum.isMetaMask) {
         console.warn("Please use metamask");
@@ -92,7 +92,7 @@ window.addEventListener("load", function() {
     // use MetaMask's provider
     App.web3 = new Web3(window.ethereum);
     try {
-        window.ethereum.enable(); // get permission to access accounts
+        await window.ethereum.enable(); // get permission to access accounts
     } catch (error) {
         console.warn("User rejected metamask");
     }
