@@ -11,7 +11,7 @@ First ensure you are in a new and empty directory.
     npm install -g truffle
     ```
 
-2. Run the development console.
+2. Run the development console
     ```javascript
     truffle develop
     ```
