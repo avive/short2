@@ -12,6 +12,8 @@ const App = {
     try {
       // get contract instance
       const networkId = await web3.eth.net.getId();
+      console.log("Network id: " + networkId);
+
       const deployedNetwork = shortArtifact.networks[networkId];
       this.shorToken = new web3.eth.Contract(shortArtifact.abi, deployedNetwork.address);
 
@@ -19,6 +21,10 @@ const App = {
       contractAddressElement.innerHTML = "Art token smart contract address<br/>" + deployedNetwork.address;
 
       this.refreshBalance();
+
+      ethereum.on('accountsChanged', function (accounts) {
+          App.refreshBalance();
+      });
 
     } catch (error) {
       console.error("Could not connect to contract on chain :-(");
@@ -42,7 +48,6 @@ const App = {
     console.log("price: (wei) " + price.toString());
 
     const priceEth = web3.utils.fromWei(price.toString(), 'ether');
-
     const balanceElement = document.getElementById("balance");
     balanceElement.innerHTML = "Your token balance is " + balance;
 
@@ -51,10 +56,10 @@ const App = {
   },
 
   sendCoin: async function() {
+
     const amount = parseInt(document.getElementById("amount").value);
 
     this.setStatus("Purchasing...");
-
     const { tokenPrice, purchase } = this.shorToken.methods;
 
     const price = await tokenPrice.call();
@@ -79,18 +84,25 @@ const App = {
 window.App = App;
 window.addEventListener("load", function() {
   if (window.ethereum) {
-     console.log("Using metamask...");
+    if (!ethereum.isMetaMask) {
+        console.warn("Please use metamask");
+    } else {
+        console.log("Using metamask...");
+    }
     // use MetaMask's provider
     App.web3 = new Web3(window.ethereum);
-    window.ethereum.enable(); // get permission to access accounts
+    try {
+        window.ethereum.enable(); // get permission to access accounts
+    } catch (error) {
+        console.warn("User rejected metamask");
+    }
+
   } else {
-    console.warn(
-      "No web3 detected. Falling back to http://127.0.0.1:9545. You should remove this fallback when you deploy live",
-    );
+    console.warn("No web3 provider detected. Enable metamask.");
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-    App.web3 = new Web3(
-      new Web3.providers.HttpProvider("http://127.0.0.1:7545"),
-    );
+    // App.web3 = new Web3(
+    // new Web3.providers.HttpProvider("http://127.0.0.1:7545"),
+    // );
   }
 
   App.start();
