@@ -16,7 +16,7 @@ const App = {
       this.shorToken = new web3.eth.Contract(shortArtifact.abi, deployedNetwork.address);
 
       const contractAddressElement = document.getElementById("contractAddress");
-      contractAddressElement.innerHTML = "Token smart contract address: " + deployedNetwork.address;
+      contractAddressElement.innerHTML = "Art token smart contract address<br/>" + deployedNetwork.address;
 
       this.refreshBalance();
 
@@ -33,7 +33,7 @@ const App = {
     this.account = accounts[0];
 
     const userAddressElement = document.getElementById("userAddress");
-     userAddressElement.innerHTML = "Your eth account address is " + this.account;
+     userAddressElement.innerHTML = "Your eth account address<br/>" + this.account;
 
     const { balanceOf, tokenPrice } = this.shorToken.methods;
 

@@ -8,19 +8,77 @@
       display: block;
       margin-bottom: 12px;
     }
+    p, label, h1, h2, h3, b, span, div, pre {
+            color: white;
+    }
   </style>
-  <body>
-    <h1>Shirley Shor Art Token</h1>
+  <body style="background:black;">
+    <pre>
+  _____ _     _      _               _____ _
+ / ____| |   (_)    | |             / ____| |
+| (___ | |__  _ _ __| | ___ _   _  | (___ | |__   ___  _ __
+ \___ \| '_ \| | '__| |/ _ \ | | |  \___ \| '_ \ / _ \| '__|
+ ____) | | | | | |  | |  __/ |_| |  ____) | | | | (_) | |
+|_____/|_| |_|_|_|  |_|\___|\__, | |_____/|_| |_|\___/|_|
+                             __/ |
+                            |___/
+                    _     _______    _
+         /\        | |   |__   __|  | |
+        /  \   _ __| |_     | | ___ | | _____ _ __
+       / /\ \ | '__| __|    | |/ _ \| |/ / _ \ '_ \
+      / ____ \| |  | |_     | | (_) |   <  __/ | | |
+     /_/    \_\_|   \__|    |_|\___/|_|\_\___|_| |_|
+    </pre>
     <p id="contractAddress"></p>
     <p id="userAddress"></p>
     <p id="balance"></p>
+
+    <b>Purchase Tokens</b>
     <p id="price"></p>
-    <hr/>
-    <h1>Purchase Token</h1>
-    <label for="amount">Number of tokens:</label>
-    <input type="text" value="1" id="amount" placeholder="e.g. 3" />
-    <button onclick="App.sendCoin()">Buy</button>
+    <span><label for="amount">Number of tokens: </label><input type="text" size="4" value="1" id="amount" placeholder="1" /></span>
+    <button onclick="App.sendCoin();">Purchase</button>
     <p id="status"></p>
+    <hr/>
+    <b>Token Blockchain Code</b>
+    <pre>
+    pragma solidity >=0.5.0;
+    import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
+    import "openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
+    import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+    import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
+    import "openzeppelin-solidity/contracts/payment/PullPayment.sol";
+
+    contract ShirleyShorToken is ERC20, ERC20Detailed, Ownable, PullPayment {
+        uint public tokenPrice = 1 ether;
+        constructor() ERC20Detailed("Shirley Shor Token", "ShorT", 0) public {
+            _mint(msg.sender, 3500);
+        }
+        function purchase(uint tokens) public payable {
+            require(msg.value == tokens.mul(tokenPrice));
+            _transfer(owner(), msg.sender, tokens);
+            _asyncTransfer(owner(), msg.value);
+        }
+        function updatePrice(uint price) onlyOwner public {
+            require(price > tokenPrice);
+            tokenPrice = price;
+        }
+    }
+    </pre>
+    <hr/>
+    <p>Contact Shirley Shor: shirleyshorarts at gmail dot com</p>
     <script src="index.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBaHjkS07WsqUqNcSMngHKNjqlA2HQN1FQ",
+        authDomain: "short-79e41.firebaseapp.com",
+        databaseURL: "https://short-79e41.firebaseio.com",
+        projectId: "short-79e41",
+        storageBucket: "short-79e41.appspot.com",
+        messagingSenderId: "1007199146332"
+      };
+      firebase.initializeApp(config);
+    </script>
   </body>
 </html>

@@ -18,11 +18,11 @@
  *
  */
 
-// const HDWallet = require('truffle-hdwallet-provider');
-// const infuraKey = "fj4jll3k.....";
+const HDWallet = require('truffle-hdwallet-provider');
+const fs = require('fs');
+const infuraKey = fs.readFileSync(".infura-key").toString().trim();
 //
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 module.exports = {
   /**
@@ -47,6 +47,14 @@ module.exports = {
       port: 7545,
       network_id: "10",
       defaultEtherBalance: 100,
+     },
+
+     "live": {
+         network_id: 1,
+         host: "127.0.0.1",
+         port: 8546,   // local geth port
+         from: "0x2ccf2e37b2a2a3f42e647adc16d37e8534b75d30", // deploy account
+         gasPrice: 3000000000, // 3 gwei
      },
 
     // Another network with more advanced options...

@@ -10,7 +10,7 @@
 
 const Token = artifacts.require("ShirleyShorToken");
 const log = console.log;
-const tokenSupply = 1000;
+const tokenSupply = 3000;
 
 contract("ShirleyShorToken", async accounts => {
   it("Anyone should be able to purchase tokens", async () => {

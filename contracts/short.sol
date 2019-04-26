@@ -15,23 +15,16 @@ import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "openzeppelin-solidity/contracts/payment/PullPayment.sol";
 
-// Executable codification of artificial scarcity (TM)
 contract ShirleyShorToken is ERC20, ERC20Detailed, Ownable, PullPayment {
-    uint public tokenPrice = 3 ether;
-
+    uint public tokenPrice = 1 ether;
     constructor() ERC20Detailed("Shirley Shor Token", "ShorT", 0) public {
-        // Only 1000 indivisible tokens are available in the universe
-        _mint(msg.sender, 1000);
+        _mint(msg.sender, 3500);
     }
-
-    // purhcase tokens from the contract for eth
     function purchase(uint tokens) public payable {
         require(msg.value == tokens.mul(tokenPrice));
         _transfer(owner(), msg.sender, tokens);
         _asyncTransfer(owner(), msg.value);
     }
-
-    // token price may go up in the future by the artist
     function updatePrice(uint price) onlyOwner public {
         require(price > tokenPrice);
         tokenPrice = price;
