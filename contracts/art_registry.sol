@@ -16,7 +16,6 @@ contract ShirleyShorArtRegistry is Ownable {
         address owner;      // edition owner pub key
         uint price;         // purchase price
         uint purchased;     // time edition purchased
-
     }
 
     uint public artPieceIds;
