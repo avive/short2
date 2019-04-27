@@ -46,7 +46,7 @@ contract("ShirleyShorToken", async accounts => {
     await instance.withdrawPayments(owner, {from: owner});
     const b2 = await web3.eth.getBalance(owner);
     // todo - consider gas paid by owner to withdraw...
-    // assert (b2 > b1, "expected balance to grow");
+    assert (b2 > b1, "expected balance to grow");
 
   });
 

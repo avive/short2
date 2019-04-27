@@ -40,7 +40,7 @@ contract("ShirleyShorArtRegistry", async accounts => {
         assert.equal(item.editionsSold, 0);
       });
 
-    it("Artist should be able to register edition", async () => {
+    it("Artist should be able to register editions up to the total editions per piece", async () => {
         const instance = await Registry.new();
 
         const pieceName = "TeamHumanPrintA";
