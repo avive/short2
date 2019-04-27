@@ -18,7 +18,7 @@ const App = {
       this.shorToken = new web3.eth.Contract(shortArtifact.abi, deployedNetwork.address);
 
       const contractAddressElement = document.getElementById("contractAddress");
-      contractAddressElement.innerHTML = "Art token smart contract address<br/>" + deployedNetwork.address;
+      contractAddressElement.innerHTML = "Blockchain address " + deployedNetwork.address;
 
       this.refreshBalance();
 
@@ -39,7 +39,7 @@ const App = {
     this.account = accounts[0];
 
     const userAddressElement = document.getElementById("userAddress");
-     userAddressElement.innerHTML = "Your eth account address<br/>" + this.account;
+     userAddressElement.innerHTML = "Your eth account address is " + this.account;
 
     const { balanceOf, tokenPrice } = this.shorToken.methods;
 
@@ -49,10 +49,10 @@ const App = {
 
     const priceEth = web3.utils.fromWei(price.toString(), 'ether');
     const balanceElement = document.getElementById("balance");
-    balanceElement.innerHTML = "Your token balance is " + balance;
+    balanceElement.innerHTML = "Your token balance is " + balance + ".";
 
     const priceElement = document.getElementById("price");
-    priceElement.innerHTML = "One token cost is " + priceEth + " ether.";
+    priceElement.innerHTML = "One token costs " + priceEth + " ether.";
   },
 
   sendCoin: async function() {
