@@ -5,7 +5,6 @@ build
 .secret
 .firebaserc
 .firebase
-/app/dist
 eth*.txt
 firebase-debug.log
 config.md
