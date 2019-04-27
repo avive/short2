@@ -1,5 +1,7 @@
 # Shirley Shor Art Token Project
 
+Output: [https://shirleyshor.studio](https://shirleyshor.studio)
+
 Includes contracts, migrations, tests, user interface, and webpack build pipeline.
 
 ## Installation
