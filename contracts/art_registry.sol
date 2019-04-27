@@ -43,13 +43,12 @@ contract ShirleyShorArtRegistry is Ownable {
     // Owner will be assigned a new edition number if an edition can be purchased
     function registerEdition(uint artPieceId, address owner, uint price) onlyOwner public {
 
-        // ensure a new edition may be sold for the art piece
+        // ensure a new edition can be sold for the art piece
         ArtPiece memory artPiece = artPiecesRegistry[artPieceId];
         require(artPiece.editionsSold < artPiece.totalEditions);
-        uint8 edition = artPiece.editionsSold + 1;
-        require(edition <= artPiece.totalEditions);
 
         // add the edition to the registry
+        uint8 edition = artPiece.editionsSold + 1;
         uint id = registrySize++;
         purchasedEditionsRegistry[id] = PurchaseRecord(artPieceId, edition, owner, price, now);
 
