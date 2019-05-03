@@ -17,8 +17,10 @@ const App = {
       const deployedNetwork = shortArtifact.networks[networkId];
       this.shorToken = new web3.eth.Contract(shortArtifact.abi, deployedNetwork.address);
 
+      console.log("Contract address: " + deployedNetwork.address);
+
       const contractAddressElement = document.getElementById("contractAddress");
-      contractAddressElement.innerHTML = "Blockchain address " + deployedNetwork.address;
+      contractAddressElement.innerHTML = "Blockchain address <a href='https://etherscan.io/token/" + deployedNetwork.address + "' target='_blank'>"+ deployedNetwork.address + "</a>";
 
       this.refreshBalance();
 
@@ -27,7 +29,7 @@ const App = {
       });
 
     } catch (error) {
-      console.error("Could not connect to contract on chain :-(");
+      console.error("Could not connect to contract on chain :-(" + error);
     }
   },
 
@@ -39,7 +41,7 @@ const App = {
     this.account = accounts[0];
 
     const userAddressElement = document.getElementById("userAddress");
-     userAddressElement.innerHTML = "Your eth account address is " + this.account;
+    userAddressElement.innerHTML = "Your eth account address is " + this.account;
 
     const { balanceOf, tokenPrice } = this.shorToken.methods;
 
@@ -98,7 +100,7 @@ window.addEventListener("load", async function() {
     }
 
   } else {
-    console.warn("No web3 provider detected. Please enable metamask.");    
+    console.warn("No web3 provider detected. Please enable metamask.");
   }
 
   App.start();
