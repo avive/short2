@@ -1,76 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Shirley Shor Art Token</title>
-        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto|Source+Code+Pro" rel="stylesheet">
-        <style>
-        input {
-          display: block;
-          margin-bottom: 12px;
-        }
-        p, label, h1, h2, h3, b, span, div, pre, a {
-                color: white;
-                font-family: 'Roboto', sans-serif;
-        }
-        </style>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111612428-3"></script>
+        <title>Shirley Shor Art</title>
         <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'UA-111612428-3');
+            window.location = "/teamhuman.html";
         </script>
     </head>
-<body style="background:black;">
-    <img src="header_trans.png" width="100%" />
-    <img width="100%" src="cypher.png"/><br/>
-    <h2>Purchase</h2>
-    <p id="userAddress"></p>
-    <p id="balance"></p>
-    <p id="price"></p>
-    <span><label for="amount">Number of tokens: </label><input type="text" size="4" value="1" id="amount" placeholder="1" /></span>
-    <button onclick="App.sendCoin();">Purchase</button>
-    <p id="status"></p>
-    <img width="100%" src="cypher.png"/><br/>
-    <h2>Smart Contract</h2>
-    <p id="contractAddress"></p>
-    </p>
-    <pre style="font-family: 'Source Code Pro', monospace;">
-    pragma solidity >=0.5.0;
-    import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
-    import "openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
-    import "openzeppelin-solidity/contracts/math/SafeMath.sol";
-    import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
-    import "openzeppelin-solidity/contracts/payment/PullPayment.sol";
-
-    contract ShirleyShorToken is ERC20, ERC20Detailed, Ownable, PullPayment {
-        uint public tokenPrice = 1 ether;
-        constructor() ERC20Detailed("Shirley Shor Token", "ShorT", 0) public {
-            _mint(msg.sender, 3500);
-        }
-        function purchase(uint tokens) public payable {
-            require(msg.value == tokens.mul(tokenPrice));
-            _transfer(owner(), msg.sender, tokens);
-            _asyncTransfer(owner(), msg.value);
-        }
-        function updatePrice(uint price) onlyOwner public {
-            require(price > tokenPrice);
-            tokenPrice = price;
-        }
-    }
-    </pre>
-    <p>Full open source code on <a href="https://github.com/avive/short2" target="_blank"/>Github</p>
-    <p><a href="https://etherscan.io/token/0x1bb544b1607163501dc87bb15ba082c7bc4b26d7" target="_blank">Tracking Page</a></p>
-    <img width="100%" src="cypher.png"/><br/>
-
-        <div width="100%" style="text-align:center;">
-            <p><a href="index.html">ART TOKEN</a>&nbsp;<img width="10px" src="small_icon_white_trans.png"/>&nbsp;<a href="teamhuman.html">TEAM HUMAN</a>
-            &nbsp;<img width="10px" src="small_icon_white_trans.png"/>&nbsp;<a href="artregistry.html">ART REGISTRY</a>
-            &nbsp;<img width="10px" src="small_icon_white_trans.png"/>&nbsp;<a href="http://shirleyshor.com/">SHIRLEY SHOR</a>
-            </p>
-        </div>
-
-    <script src="index.js"></script>
-  </body>
+    <body></body>
 </html>

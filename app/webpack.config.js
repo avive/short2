@@ -11,6 +11,7 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
         { from: "./src/index.html", to: "index.html" },
+        { from: "./src/token.html", to: "token.html" },
         { from: "./src/artregistry.html", to: "artregistry.html" },
         { from: "./src/teamhuman.html", to: "teamhuman.html" }
     ]),
