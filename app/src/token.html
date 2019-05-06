@@ -8,7 +8,7 @@
           display: block;
           margin-bottom: 12px;
         }
-        p, label, h1, h2, h3, b, span, div, pre, a {
+        p, label, h1, h2, h3, b, span, div, pre, a, ul, li {
                 color: white;
                 font-family: 'Roboto', sans-serif;
         }
@@ -25,6 +25,14 @@
 <body style="background:black;">
     <img src="header_trans.png" width="100%" />
     <img width="100%" src="cypher.png"/><br/>
+
+        <p>Shirley Shor art Tokens (ShorTs) are issued and maintained on the Ethereum public ledger. Purchasers of <a href="teamhuman.html">Team Human</a> art pieces will receive ShorTs based on their purchase amount. For example, one ShorT for every 1 Eth spent on purchasing art from the artist. The artist herby promises to sell her art work exclusively to token purchases for a period of the next 5 years. Only a fixed amount of 3500 ShortS exist and no new ones may be created. The artist may increase the price of each token in the future but will and can not create new ones. ShortTs holders become part of Team Human and get exclusive benefits and rights:</p>
+        <ul>
+            <li>A right to receive a Team Human Certificate and a share of the profits from the amount of editions sold</li>
+            <li>First right to purchase a specific exclusive limited edition of the Team Human artwork. This includes the video real-time-generated piece, prints and other related material that will be emerging organically from this project</li>
+            <li>Right to participate in future Team Human art pieces</li>
+            <li>Participate in the artistic creative process</li>
+        </ul>
     <h2>Purchase</h2>
     <p id="userAddress"></p>
     <p id="balance"></p>
@@ -32,7 +40,9 @@
     <span><label for="amount">Number of tokens: </label><input type="text" size="4" value="1" id="amount" placeholder="1" /></span>
     <button onclick="App.sendCoin();">Purchase</button>
     <p id="status"></p>
+
     <img width="100%" src="cypher.png"/><br/>
+
     <h2>Smart Contract</h2>
     <p id="contractAddress"></p>
     </p>
@@ -67,6 +77,7 @@
         <p><a href="token.html">ART TOKEN</a>&nbsp;<img width="10px" src="small_icon_white_trans.png"/>&nbsp;<a href="teamhuman.html">TEAM HUMAN</a>
         &nbsp;<img width="10px" src="small_icon_white_trans.png"/>&nbsp;<a href="artregistry.html">ART REGISTRY</a>
         &nbsp;<img width="10px" src="small_icon_white_trans.png"/>&nbsp;<a href="http://shirleyshor.com/">SHIRLEY SHOR</a>
+        &nbsp;<img width="10px" src="small_icon_white_trans.png"/>&nbsp;<a href="https://twitter.com/ShorShirley">@ShorShorley</a>
         </p>
     </div>
     <script src="index.js"></script>
