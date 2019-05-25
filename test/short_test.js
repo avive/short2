@@ -18,7 +18,12 @@ const log = console.log;
 const tokenSupply = 3500;
 
 contract("ShirleyShorToken", async accounts => {
-  it("Anyone should be able to purchase tokens", async () => {
+
+ it("Sign test", async () => {
+
+ });
+
+ it("Anyone should be able to purchase tokens", async () => {
     const instance = await Token.new();
     const owner = accounts[0];
     const buyer = accounts[1];
@@ -46,6 +51,9 @@ contract("ShirleyShorToken", async accounts => {
     await instance.withdrawPayments(owner, {from: owner});
     const b2 = await web3.eth.getBalance(owner);
     // todo - consider gas paid by owner to withdraw...
+    console.log("b1" + b1);
+    console.log("b2" + b2);
+
     assert (b2 > b1, "expected balance to grow");
 
   });
