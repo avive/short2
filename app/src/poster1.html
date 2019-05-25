@@ -13,11 +13,13 @@
             text-align:left;
         }
 
-        .textBanner {
+        .poster {
             animation-duration: 1s;
-            font-size: 64px;
             margin: auto;
             padding: 20px;
+            width: 100%;
+            height: auto;
+
         }
 
         .container {
@@ -26,6 +28,7 @@
             display: flex;
             justify-content: center;
             align-content: center;
+            align-items: center;
         }
 
         </style>
@@ -38,14 +41,12 @@
         </script>
     </head>
     <body style="background:black; text-align:center;">
-        <div class="container" onclick="location.href=`poster1.html`">
-            <p class="textBanner">Where are we now?</p>
+        <div class="container" onclick="location.href=`teamhuman.html`">
+            <img class="poster" src="team_human_white_logo.png"></img>
         </div>
         <script>
-            const messages = ["What does it mean to be human?", "What is human?", "Are you human?","Can machines be human?", "When human becomes “less” human and more machine?","When machine becomes “more” human?", "How much more or less autonomous are we?","Are we there yet?", "Can the revolution start already?","What’s the uses of human beings?","We are much more then utility value","What is your pro human massage?","Have AI and biotech improved life for the majority of human beings?","How will technology shape the cultures of the future?","We should optimized technology to human.. not the other way", "How might ethics be defined by decentralized systems?","Can algorithms save planet earth from global warming?","What will be after the apocalypse?","Who can save us from ourself?", "The singularity is near", "We need to act!", "Retrieve humanity!", "Information is forever", "Code or God?","What is the core of our humanity?","Don’t control my memories", "Algorithms are deimenes", "Can we build a positive algorithm to fight the bad algorithm?","Feeling the love and the code will follow", "Dignity and Democracy is define our digital age", "What now?", "We have the power to create the future", "Everything is connected", "You are not alone", "Be human"];
 
-            let messageIdx = 0;
-            const displayDurationMs = 1000;
+            const displayDurationMs = 2000;
             const e =  document.querySelector('.textBanner');
 
             function animateIn() {
@@ -62,12 +63,6 @@
             function onOutAnimationEnded () {
                 e.removeEventListener('animationend', onOutAnimationEnded);
                 e.classList.remove('animated', 'bounceOutLeft');
-                messageIdx++;
-                if (messageIdx == messages.length) {
-                    messageIdx = 0;
-                }
-                e.innerHTML = messages[messageIdx];
-                animateIn();
             }
 
             function animateOut() {
