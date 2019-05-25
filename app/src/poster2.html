@@ -15,20 +15,27 @@
 
         .poster {
             animation-duration: 1s;
-            margin: auto;
+            width:100%;
+            height: auto;
             padding: 0;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .cypher {
+            height: 120px;
         }
 
         .container {
             width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            align-content: center;
-        }
-
-        body {
-            background-image: url('2020.svg');
+            align-content: flex-start;
+            flex-shrink: 0;
         }
 
         </style>
@@ -40,9 +47,12 @@
             gtag('config', 'UA-111612428-3');
         </script>
     </head>
-    <body style="text-align:center;">
-        <div class="container" onclick="location.href=`intro.html`">
-            <img class="poster animated fadeIn slow" src="poster1.jpg"></img>
+    <body style="text-align:center; background:black;">
+        <div class="container" onclick="location.href=`poster3.html`">
+            <img class="poster animated fadeIn slow" width="100%" src="team_human_header.png"/>
+            <img class="cypher poster animated fadeIn slow" src="cypher.png"/>
+            <img class="poster animated fadeIn slow" src="team_human_face.jpg"/>
+            <img class="cypher poster animated fadeIn slow" src="cypher.png"/>
         </div>
     </body>
 </html>
