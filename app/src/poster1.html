@@ -42,35 +42,7 @@
     </head>
     <body style="background:black; text-align:center;">
         <div class="container" onclick="location.href=`teamhuman.html`">
-            <img class="poster" src="team_human_white_logo.png"></img>
-        </div>
-        <script>
-
-            const displayDurationMs = 2000;
-            const e =  document.querySelector('.textBanner');
-
-            function animateIn() {
-                e.classList.add('animated', 'bounceInLeft');
-                e.addEventListener('animationend', onInAnimationEnded);
-            }
-
-            function onInAnimationEnded() {
-                e.removeEventListener('animationend', onInAnimationEnded);
-                e.classList.remove('animated', 'bounceInLeft');
-                setTimeout(animateOut, displayDurationMs);
-            }
-
-            function onOutAnimationEnded () {
-                e.removeEventListener('animationend', onOutAnimationEnded);
-                e.classList.remove('animated', 'bounceOutLeft');
-            }
-
-            function animateOut() {
-                e.classList.add('animated', 'bounceOutLeft');
-                e.addEventListener('animationend', onOutAnimationEnded);
-            }
-
-            animateIn();
-        </script>
+            <img class="poster animated fadeIn slow" src="team_human_white_logo.png"></img>
+        </div>        
     </body>
 </html>
