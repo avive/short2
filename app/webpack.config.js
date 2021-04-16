@@ -15,6 +15,7 @@ module.exports = {
         { from: "./src/artregistry.html", to: "artregistry.html" },
         { from: "./src/teamhuman.html", to: "teamhuman.html" },
         { from: "./src/intro.html", to: "intro.html" },
+        { from: "./src/invitation.html", to: "invitation.html" },
         { from: "./src/poster.html", to: "poster.html" },
         { from: "./src/poster1.html", to: "poster1.html" },
         { from: "./src/poster2.html", to: "poster2.html" },
